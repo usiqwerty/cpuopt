@@ -1,0 +1,11 @@
+[Unit]
+Description=cpuopt - Automatic CPU speed & power optimizer for Linux
+
+[Service]
+Type=simple
+User=root
+ExecStart=cpuopt --daemon
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

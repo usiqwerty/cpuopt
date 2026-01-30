@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "auto-cpufreq"
+name = "cpuopt"
 version = "2.6.0"
 description = "Automatic CPU speed & power optimizer for Linux"
 authors = ["Adnan Hodzic <adnan@hodzic.org>"]
@@ -16,14 +16,12 @@ keywords=["linux", "cpu", "speed", "power", "frequency", "turbo", "optimzier", "
 repository = "https://github.com/AdnanHodzic/auto-cpufreq"
 documentation = "https://github.com/AdnanHodzic/auto-cpufreq#readme"
 packages = [
-    { include = "./auto_cpufreq" },
-    { include = "./auto_cpufreq/gui" },
+    { include = "cpuopt" },
 ]
 
 [tool.poetry.dependencies]
 python = ">=3.9, <4.0"
 psutil = ">=6.0.0,<8.0.0"
-click = "^8.1.0"
 distro = "^1.8.0"
 requests = "^2.32.3"
 # PyObject version will be updated automatically for Debian based distro based on libgirepository 
@@ -41,8 +39,7 @@ requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
 build-backend = "poetry_dynamic_versioning.backend"
 
 [tool.poetry.scripts]
-auto-cpufreq = "auto_cpufreq.bin.auto_cpufreq:main"
-auto-cpufreq-gtk = "auto_cpufreq.bin.auto_cpufreq_gtk:main"
+cpuopt = "cpuopt.main:cli"
 
 # https://github.com/mtkennerly/poetry-dynamic-versioning
 [tool.poetry-dynamic-versioning]

@@ -2,8 +2,8 @@
 import os
 from subprocess import check_output
 
-from auto_cpufreq.config.config import config
-from auto_cpufreq.globals import CONSERVATION_MODE_FILE, POWER_SUPPLY_DIR
+from cpuopt.config import config
+from cpuopt.globals import POWER_SUPPLY_DIR
 
 def set_battery(value, mode, bat):
     path = f"{POWER_SUPPLY_DIR}{bat}/charge_{mode}_threshold"
@@ -67,3 +67,6 @@ def ideapad_laptop_print_thresholds():
             print(bat, "start threshold =", check_output(["cat", POWER_SUPPLY_DIR+bat+"/charge_start_threshold"]))
             print(bat, "stop threshold =", check_output(["cat", POWER_SUPPLY_DIR+bat+"/charge_stop_threshold"]))
         except Exception as e: print(f"ERROR: failed to read battery {bat} thresholds:", repr(e))
+
+
+CONSERVATION_MODE_FILE = "/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode"

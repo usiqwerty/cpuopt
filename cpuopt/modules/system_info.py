@@ -1,18 +1,15 @@
 from dataclasses import dataclass
 import os
-from pathlib import Path
 import platform
 from subprocess import getoutput
 from typing import Tuple, List
 import psutil
 import distro
 from pathlib import Path
-from auto_cpufreq.config.config import config
-from auto_cpufreq.core import get_power_supply_ignore_list
-from auto_cpufreq.globals import (
-    AVAILABLE_GOVERNORS_SORTED,
+from cpuopt.config import config
+from cpuopt.sysparam import get_power_supply_ignore_list, AVAILABLE_GOVERNORS_SORTED
+from cpuopt.globals import (
     CPU_TEMP_SENSOR_PRIORITY,
-    IS_INSTALLED_WITH_SNAP,
     POWER_SUPPLY_DIR,
 )
 
@@ -71,12 +68,8 @@ class SystemInfo:
     """
 
     def __init__(self):
-        self.distro_name: str = (
-            distro.name(pretty=True) if not IS_INSTALLED_WITH_SNAP else "UNKNOWN"
-        )
-        self.distro_version: str = (
-            distro.version() if not IS_INSTALLED_WITH_SNAP else "UNKNOWN"
-        )
+        self.distro_name: str = distro.name(pretty=True)
+        self.distro_version: str = distro.version()
         self.architecture: str = platform.machine()
         self.processor_model: str = (
             getoutput("grep -E 'model name' /proc/cpuinfo -m 1").split(":")[-1].strip()

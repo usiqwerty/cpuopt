@@ -3,7 +3,7 @@ from typing import Callable
 import urwid
 import time
 from .system_info import SystemReport, system_info
-from auto_cpufreq.config.config import config
+from cpuopt.config import config
 from enum import Enum
 
 
